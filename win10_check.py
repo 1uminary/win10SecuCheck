@@ -133,7 +133,7 @@ resultCheck = 0
 resultCheck1 = 0
 stat = {}
 f.close()
-os.popen("del /q temp.txt")
+os.remove("temp.txt")
 
 print(u"PC-03 복구 콘솔 자동 로그온 금지")
 subject = "RecoveryConsoleSecurityLevel"

@@ -78,18 +78,24 @@ def shareSearch():
         host["shareFolderStat"] = shareFolder
         return shareFolder
 
-h = os.popen("hostname").readline().split()
-hostname = h[0]
-host["name"] = hostname
-print(hostname)
+def nameDatetime():
+    h = os.popen("hostname").readline().split()
+    hostname = h[0]
+    host["name"] = hostname
+    print(hostname)
 
-today = str(datetime.datetime.now())
-host["datetime"] = today
-print(today)
+    dayTime = str(datetime.datetime.now())
+    dt = dayTime.split()
+    host["date"] = dt[0]
+    host["time"] = dt[1]
+    print(dt[0])
+    print(dt[1])
+
+nameDatetime()
 
 print(u"PC-01 패스워드 주기적 변경 and PC-02 패스워드 정책이 해당 기관의 보안 정책에 적합하게 설정")
 os.popen("secedit.exe /export /cfg temp.txt")
-f = open("temp.txt", 'r', encoding='utf-16')
+f = open("temp.txt", 'r', encoding='UTF-16')
 while True:
     line = f.readline()
     if not line: 

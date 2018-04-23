@@ -2,6 +2,7 @@
 import os
 import re
 import datetime
+import time
 
 host = {}
 stat = {}
@@ -95,6 +96,8 @@ nameDatetime()
 
 print(u"PC-01 패스워드 주기적 변경 and PC-02 패스워드 정책이 해당 기관의 보안 정책에 적합하게 설정")
 os.popen("secedit.exe /export /cfg temp.txt")
+time.sleep(1)
+#print((os.popen("dir")).read())
 f = open("temp.txt", 'r', encoding='UTF-16')
 while True:
     line = f.readline()

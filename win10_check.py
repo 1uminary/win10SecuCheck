@@ -19,6 +19,7 @@ windowVer = "16299"
 
 def regSearch(subject, regPath, regName):
     """이 함수는 세 개의 str 값을 입력받아 레지스트리 값을 검색 후 결과를 반환함.
+
     : param: str subject: 레지스트리의 의미
     : prram: str regPath: 레지스트리의 위치
     : param: str regName: 레지스트리의 이름
@@ -44,6 +45,15 @@ def regSearch(subject, regPath, regName):
         return result
 
 def shareSearch():
+    """이 함수는 Windows10 PC의 공유 폴더를 검색 후 결과를 반환함.
+    
+    예제:
+        다음과 같이 사용:
+        >>> shreSearch()
+        ['temp', 'C://temp', '0']
+    
+    :returns list: 일반 공유폴더 정보를 반환 3번째 값은 공유자에 Everyone 포함 여부를 나타내며 0이면 1이면 취약  
+    """
     num = 0
     shareFolder = []
     result = os.popen(u'net share | find /V "기본 공유" | find /V "원격 IPC" | find /V "원격 관리" | find /V "명령을 잘 실행했습니다." | find /V "공유 이름" | find /V "-----" | find ":"')

@@ -3,6 +3,7 @@ import os
 import re
 import datetime
 import time
+import json
 
 host = {}
 stat = {}
@@ -79,20 +80,32 @@ def shareSearch():
         host["shareFolderStat"] = shareFolder
         return shareFolder
 
-def nameDatetime():
+def nameDateTime():
+    """이 함수는 host list 에 PC 의 hostname 과 현재날짜, 현재시간을 기록함.
+    
+    예제:
+        다음과 같이 사용:
+        >>> nameDatetime()
+    """
+    result = []
     h = os.popen("hostname").readline().split()
     hostname = h[0]
-    host["name"] = hostname
+    result.append(hostname)
     print(hostname)
 
     dayTime = str(datetime.datetime.now())
     dt = dayTime.split()
-    host["date"] = dt[0]
-    host["time"] = dt[1]
+    result.append(dt[0])
+    result.append(dt[1])
     print(dt[0])
     print(dt[1])
 
-nameDatetime()
+    return result
+
+ndt = nameDateTime()
+host["name"] = ndt[0]
+host["date"] = ndt[1]
+host["time"] = ndt[2]
 
 print(u"PC-01 패스워드 주기적 변경 and PC-02 패스워드 정책이 해당 기관의 보안 정책에 적합하게 설정")
 os.popen("secedit.exe /export /cfg temp.txt")
@@ -294,5 +307,8 @@ result = regSearch(subject, regPath, regName)
 if result == '0': host["PC-20"] = "ture"
 else: host["PC-20"] = "false"
 
-print(host)
-print(type(host))
+stringOfJsonData = json.dumps(host)
+fileName = ndt[0] + "_" + ndt[1] + ".json"
+f = open(fileName, 'w')
+f.write(stringOfJsonData)
+f.close()

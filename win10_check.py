@@ -189,7 +189,7 @@ result = (result.read()).split()
 del result[0] #드락이브: 제거
 for drive in result:
     result1 = os.popen("fsutil fsinfo driveType " + drive)
-    if (result1.read()).find(u"고정식") <= -1:
+    if (result1.read()).find(u"고정식") == -1:
         result.remove(drive)
 for drive in result:
     result1 = os.popen("fsutil fsinfo volumeInfo " + drive)

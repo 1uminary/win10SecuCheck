@@ -102,6 +102,19 @@ def nameDateTime():
 
     return result
 
+def win2Utf8(winStr):
+    """이 함수는 os._wrap_close 타입의 os.popen 결과를 utf-8 문자열로 변환함.
+
+    예제:
+        다음과 같이 사용:
+        >>> r = os.popen("dir")
+            u = win2Utf8(r)
+
+    return str: os._wrap_close 타입의 문자열 bytes 타입으로 encode 후 utf-8로 디코드 한 결과를 str 타입으로 반환.
+    """
+    utf8Str = ((winStr.read()).encode()).decode("utf-8")
+    return utf8Str
+
 ndt = nameDateTime()
 host["name"] = ndt[0]
 host["date"] = ndt[1]
@@ -190,12 +203,10 @@ del result[0] #드락이브: 제거
 notVolume = list(result)
 for i in range(len(result)):
     result1 = os.popen("fsutil fsinfo driveType " + result[i])
-    print(result1.read())
-    print((result1.read()).find("고정식"))
-    if (result1.read()).find("고정식") == -1:
+    uStr = win2Utf8(result1)
+    if uStr.find(u"고정식") == -1:
         notVolume.remove(result[i])
 result = list(notVolume)
-print(result)
 for drive in result:
     result1 = os.popen("fsutil fsinfo volumeInfo " + drive)
     if (result1.read()).find("NTFS") > -1: 
@@ -316,7 +327,7 @@ result = regSearch(subject, regPath, regName)
 if result == '1': host["PC-20"] = "ture"
 else: host["PC-20"] = "false"
 
-stringOfJsonData = json.dumps(host)
+stringOfJsonData = json.dumps(host, indent=4, sort_keys=False)
 fileName = ndt[0] + "_" + ndt[1] + ".json"
 f = open(fileName, 'w')
 f.write(stringOfJsonData)

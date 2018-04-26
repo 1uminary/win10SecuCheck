@@ -187,9 +187,10 @@ print(u"PC-07 파일 시스템을 NTFS로 포맷")
 result = os.popen("fsutil fsinfo drives")
 result = (result.read()).split()
 del result[0] #드락이브: 제거
+print(result)
 for drive in result:
     result1 = os.popen("fsutil fsinfo driveType " + drive)
-    if (result1.read()).find(u"고정식") == -1:
+    if (result1.read()).find("고정식") == -1:
         result.remove(drive)
 for drive in result:
     result1 = os.popen("fsutil fsinfo volumeInfo " + drive)

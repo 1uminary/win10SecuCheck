@@ -300,11 +300,11 @@ print(u"PC-19 시스템 부팅 시 Windows Messenger 자동실행 금지")
 host["PC-19"] = "null"
 
 print(u"PC-20 항목 원격 지원 금지 정책 설정")
-subject = "TerminalService"
-regPath = "\"HKLM\Software\Microsoft\Windows NT\Terminal Service\""
-regName = "fAllowUnsolicited"
+subject = "RDPService"
+regPath = "\"HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\""
+regName = "fDenyTSConnections"
 result = regSearch(subject, regPath, regName)
-if result == '0': host["PC-20"] = "ture"
+if result == '1': host["PC-20"] = "ture"
 else: host["PC-20"] = "false"
 
 stringOfJsonData = json.dumps(host)

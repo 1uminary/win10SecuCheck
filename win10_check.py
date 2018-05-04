@@ -132,27 +132,27 @@ while True:
     if line.find("ClearTextPassword") > -1:
         i = int(re.findall("\d+", line)[0])
         if i != 0: resultCheck += 1
-        stat[u"ClearTextPassword"] = str(i)
+        stat[u"ClearTextPassword"] = i
     elif line.find("PasswordComplexity") > -1:
         i = int(re.findall("\d+", line)[0])
         if i != 1: resultCheck += 1
-        stat[u"PasswordComplexity"] = str(i)
+        stat[u"PasswordComplexity"] = i
     elif line.find("MinimumPasswordLength") > -1:
         i = int(re.findall("\d+", line)[0])
         if i < passLength: resultCheck += 1
-        stat[u"MinimumPasswordLength"] = str(i)
+        stat[u"MinimumPasswordLength"] = i
     elif line.find("PasswordHistorySize") > -1:
         i = int(re.findall("\d+", line)[0])
         if i < passHistory: resultCheck += 1
-        stat[u"PasswordHistorySize"] = str(i)
-    elif line.find("MaximumPasswordAge ") > -1:
+        stat[u"PasswordHistorySize"] = i
+    elif line.find("MaximumPasswordAge") > -1:
         i = int(re.findall("\d+", line)[0])
         if i < passMaxage: resultCheck1 += 1
-        stat[u"MaximumPasswordAge"] = str(i)
+        stat[u"MaximumPasswordAge"] = i
     elif line.find("MinimumPasswordAge") > -1:
         i = int(re.findall("\d+", line)[0])
         if i < passMinage: resultCheck1 += 1
-        stat[u"MinimumPasswordAge"] = str(i)
+        stat[u"MinimumPasswordAge"] = i
 host["passStat"] = stat
 if resultCheck1 > 0 : host["PC-01"] = "false"
 elif resultCheck1 ==0: host["PC-01"] = "true"

@@ -278,22 +278,24 @@ while True:
     line = result.readline()
     if not line:
         break
-    i = int(re.findall("\d+", line)[0])
     if line.find("ScreenSaveActive") > -1:
+        i = int(re.findall("\d+", line)[0])
         stat["ScreenSaveActive"] = i
         if i == 0:
             resultCheck += 1
     elif line.find("ScreenSaverIsSecure") > -1:
+        i = int(re.findall("\d+", line)[0])
         stat["ScreenSaverIsSecure"] = i
-        if int(re.findall("\d+", line)[0]) == 0:
+        if i == 0:
             resultCheck += 1
     elif line.find("ScreenSaveTimeOut") > -1:
+        i = int(re.findall("\d+", line)[0])
         stat["ScreenSaveTimeOut"] = i
-        if int(re.findall("\d+", line)[0]) > 600:
+        if i > 600:
             resultCheck += 1
 host["ScreenSaveStat"] = stat
 if resultCheck == 0: host["PC-16"] = "false"
-elif resultCheck > 0: host["PC-16"] = "ture"
+elif resultCheck > 0: host["PC-16"] = "true"
 resultCheck = 0
 stat = []
 
@@ -324,7 +326,7 @@ subject = "RDPService"
 regPath = "\"HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\""
 regName = "fDenyTSConnections"
 result = regSearch(subject, regPath, regName)
-if result == '1': host["PC-20"] = "ture"
+if result == '1': host["PC-20"] = "true"
 else: host["PC-20"] = "false"
 
 stringOfJsonData = json.dumps(host, indent=4, sort_keys=False)

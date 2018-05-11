@@ -294,8 +294,8 @@ while True:
         if i > 600:
             resultCheck += 1
 host["ScreenSaveStat"] = stat
-if resultCheck == 0: host["PC-16"] = "false"
-elif resultCheck > 0: host["PC-16"] = "true"
+if resultCheck == 0: host["PC-16"] = "true"
+elif resultCheck > 0: host["PC-16"] = "false"
 resultCheck = 0
 stat = []
 

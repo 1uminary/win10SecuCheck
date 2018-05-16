@@ -147,7 +147,7 @@ while True:
         stat[u"PasswordHistorySize"] = i
     elif line.find("MaximumPasswordAge") > -1:
         i = int(re.findall("\d+", line)[0])
-        if i < passMaxage: resultCheck1 += 1
+        if i > passMaxage: resultCheck1 += 1
         stat[u"MaximumPasswordAge"] = i
     elif line.find("MinimumPasswordAge") > -1:
         i = int(re.findall("\d+", line)[0])

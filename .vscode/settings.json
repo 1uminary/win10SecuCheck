@@ -1,4 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\luminary\\Anaconda3\\envs\\py36\\python.exe",
+    "python.pythonPath": "/usr/local/bin/python3",
     "python.linting.pylintEnabled": false
 }

@@ -208,6 +208,7 @@ for i in range(len(result)):
         notVolume.remove(result[i])
 result = list(notVolume)
 for drive in result:
+    drive = drive.rstrip('\\')
     result1 = os.popen("fsutil fsinfo volumeInfo " + drive)
     if (result1.read()).find("NTFS") > -1: 
         stat[drive] = "true"

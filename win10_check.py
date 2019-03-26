@@ -230,7 +230,7 @@ else: host["PC-08"] = "true"
 
 print(u"PC-09 브라우저 종료 시 임시 인터넷 폴더 내용 삭제")
 subject = "InternetCacheRemove"
-regPath = "\"HKLM\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\""
+regPath = "\"HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\""
 regName = "Persistent"
 result = regSearch(subject, regPath, regName)
 if result == '0': host["PC-09"] = "true"

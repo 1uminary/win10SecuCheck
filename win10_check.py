@@ -131,7 +131,7 @@ while True:
         break
     if line.find("ClearTextPassword") > -1:
         i = int(re.findall("\d+", line)[0])
-        if i != 0: resultCheck += 1
+        if i != 1: resultCheck += 1
         stat[u"ClearTextPassword"] = str(i)
     elif line.find("PasswordComplexity") > -1:
         i = int(re.findall("\d+", line)[0])
@@ -147,7 +147,7 @@ while True:
         stat[u"PasswordHistorySize"] = str(i)
     elif line.find("MaximumPasswordAge ") > -1:
         i = int(re.findall("\d+", line)[0])
-        if i > passMaxage: resultCheck1 += 1
+        if i < passMaxage: resultCheck1 += 1
         stat[u"MaximumPasswordAge"] = str(i)
     elif line.find("MinimumPasswordAge") > -1:
         i = int(re.findall("\d+", line)[0])
@@ -233,7 +233,7 @@ subject = "InternetCacheRemove"
 regPath = "\"HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\""
 regName = "Persistent"
 result = regSearch(subject, regPath, regName)
-if result == '0': host["PC-09"] = "true"
+if result == '1': host["PC-09"] = "true"
 else: host["PC-09"] = "false"
 
 print(u"PC-10 HOT FIX 등 최신 보안패치")

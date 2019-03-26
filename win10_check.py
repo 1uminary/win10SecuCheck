@@ -189,7 +189,7 @@ host["PC-05"] = "null"
 
 print(u"PC-06 Windows Messenger(MSN, .NET 메신저 등)와 같은 상용 메신저의 사용 금지")
 subject = "WindowsMessengerRun"
-regPath = "\"HKCU\Software\Policies\Microsoft\Messenger\Client\""
+regPath = "\"HKLM\Software\Policies\Microsoft\Messenger\Client\""
 regName = "PreventRun"
 result = regSearch(subject, regPath, regName)
 if result == '0': host["PC-06"] = "true"
@@ -230,7 +230,7 @@ else: host["PC-08"] = "true"
 
 print(u"PC-09 브라우저 종료 시 임시 인터넷 폴더 내용 삭제")
 subject = "InternetCacheRemove"
-regPath = "\"HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\""
+regPath = "\"HKLM\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\""
 regName = "Persistent"
 result = regSearch(subject, regPath, regName)
 if result == '0': host["PC-09"] = "true"
